@@ -1,6 +1,7 @@
 ﻿using ApiTeste.Domain;
 using ApiTeste.Repositories.Interface;
 using ApiTeste.Services.Interface;
+using Org.BouncyCastle.Crypto;
 
 namespace ApiTeste.Services
 {
@@ -11,7 +12,7 @@ namespace ApiTeste.Services
         {
             _repository = repository;
         }
-                                                            
+
         public async Task<UserDto> GetUser(int id)
         {
             var user = await _repository.GetUser(id);
@@ -51,19 +52,26 @@ namespace ApiTeste.Services
             }).ToList();
         }
 
-        public Task<int> AddUser(UserDto user)
+        public async Task<int> AddUser(UserDto user)
         {
-            var idUser = _repository.AddUser(new UserModel()
-            {
-                Name = user.Name,
-                SobreNome = user.SobreNome,
-                Cpf = user.Cpf,
-                Function = user.Function,
-                Idade = user.Idade,
-                Salario = user.Salario
-            });
 
-            return idUser;
+            if (!await _repository.CpfExists(user.Cpf))
+            {                 
+                var idUser = await _repository.AddUser(new UserModel()
+                {
+                    Name = user.Name,
+                    SobreNome = user.SobreNome,
+                    Cpf = user.Cpf,
+                    Function = user.Function,
+                    Idade = user.Idade,
+                    Salario = user.Salario
+                });
+                return idUser;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public async Task<bool> UpdateUser(int id, UserDto user)

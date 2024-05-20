@@ -28,6 +28,11 @@ namespace ApiTeste.Repositories
             return await _context.pessoa.FindAsync(id);
         }
 
+        public async Task<bool> CpfExists(string cpf)
+        {
+            return await _context.pessoa.AnyAsync(u => u.Cpf == cpf);
+        }
+
         public async Task<int> AddUser(UserModel user)
         {
             _context.pessoa.Add(user);
