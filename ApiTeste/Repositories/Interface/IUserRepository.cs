@@ -5,7 +5,7 @@ namespace ApiTeste.Repositories.Interface
     {
         Task<List<UserModel>> GetUsers(List<int> ids);
         Task<UserModel> GetUser(int id);
-        Task<bool> CpfExists(string cpf);
+        Task<bool> CpfExisting(string cpf);
         Task<int> AddUser(UserModel user);
         Task<bool> UpdateUser(int id, UserModel user);
         Task<bool> DeleteUser(int id);

@@ -28,7 +28,7 @@ namespace ApiTeste.Repositories
             return await _context.pessoa.FindAsync(id);
         }
 
-        public async Task<bool> CpfExists(string cpf)
+        public async Task<bool> CpfExisting(string cpf)
         {
             return await _context.pessoa.AnyAsync(u => u.Cpf == cpf);
         }
@@ -42,18 +42,18 @@ namespace ApiTeste.Repositories
 
         public async Task<bool> UpdateUser(int id, UserModel user)
         {
-            var existingUser = await _context.pessoa.FindAsync(id);
-            if (existingUser == null)
+            var existUser = await _context.pessoa.FindAsync(id);
+            if (existUser == null)
             {
                 return false;
             }
 
-            existingUser.Name = user.Name;
-            existingUser.SobreNome = user.SobreNome;
-            existingUser.Cpf = user.Cpf;
-            existingUser.Function = user.Function;
-            existingUser.Idade = user.Idade;
-            existingUser.Salario = user.Salario;
+            existUser.Name = user.Name;
+            existUser.SobreNome = user.SobreNome;
+            existUser.Cpf = user.Cpf;
+            existUser.Function = user.Function;
+            existUser.Idade = user.Idade;
+            existUser.Salario = user.Salario;
 
             await _context.SaveChangesAsync();
             return true;

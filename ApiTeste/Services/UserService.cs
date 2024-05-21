@@ -55,7 +55,7 @@ namespace ApiTeste.Services
         public async Task<int> AddUser(UserDto user)
         {
 
-            if (!await _repository.CpfExists(user.Cpf))
+            if (!await _repository.CpfExisting(user.Cpf))
             {                 
                 var idUser = await _repository.AddUser(new UserModel()
                 {
