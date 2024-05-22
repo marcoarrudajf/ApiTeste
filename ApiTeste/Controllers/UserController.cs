@@ -55,7 +55,7 @@ namespace ApiTeste.Controllers
 
             if (!success)
             {
-                return BadRequest("Not able to update the user.");
+                return BadRequest("Não é possível atualizar o usuário.");
             };
 
             return Ok();
@@ -68,9 +68,9 @@ namespace ApiTeste.Controllers
 
             if (!success)
             {
-                return BadRequest("Not able to delete the user.");
+                return BadRequest("Não é possível excluir o usuário.");
             }
             return Ok();
-        }
+        }       
     }
 }
