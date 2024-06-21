@@ -58,7 +58,7 @@ namespace ApiTeste.Controllers
                 return BadRequest("Não é possível atualizar o usuário.");
             };
 
-            return Ok();
+            return Ok("Usuario  atualizado com sucesso!");
         }
 
         [HttpDelete("DeleteUser")]

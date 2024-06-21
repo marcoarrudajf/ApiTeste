@@ -9,4 +9,11 @@
         public int Idade { get; set; }
         public double Salario { get; set; }
     }
+
+    public static class UserHelper
+    {
+        public static string GetFullName(this UserDto userDto)
+        => userDto.Name + userDto.SobreNome;
+    }
+
 }

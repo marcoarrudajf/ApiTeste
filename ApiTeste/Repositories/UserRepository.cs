@@ -18,7 +18,7 @@ namespace ApiTeste.Repositories
 
             if (ids != null && ids.Count > 0)
             {
-                query = query.Where(u => ids.Contains(u.Id));
+               query = query.Where(u => ids.Contains(u.Id));
             }
             return query.ToListAsync();
         }
@@ -43,10 +43,6 @@ namespace ApiTeste.Repositories
         public async Task<bool> UpdateUser(int id, UserModel user)
         {
             var existUser = await _context.pessoa.FindAsync(id);
-            if (existUser == null)
-            {
-                return false;
-            }
 
             existUser.Name = user.Name;
             existUser.SobreNome = user.SobreNome;
@@ -55,6 +51,7 @@ namespace ApiTeste.Repositories
             existUser.Idade = user.Idade;
             existUser.Salario = user.Salario;
 
+            //_context.pessoa.Update(existUser);
             await _context.SaveChangesAsync();
             return true;
         }

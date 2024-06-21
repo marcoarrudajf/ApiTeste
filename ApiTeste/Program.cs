@@ -18,7 +18,7 @@ namespace ApiTeste
             // Add services to the container.
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IUserService, UserService>();
-
+            
             var connectionString = builder.Configuration.GetConnectionString("MySqlConnection");
 
             // Add DbContext with MySQL

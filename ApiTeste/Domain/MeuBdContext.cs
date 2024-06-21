@@ -7,7 +7,7 @@ namespace ApiTeste.Domain
         public  MeuDbContext(DbContextOptions<MeuDbContext> options) : base(options)
         {
             
-        }
+        } 
 
         public DbSet<UserModel> pessoa { get; set; }
     }
